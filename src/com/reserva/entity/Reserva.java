@@ -1,30 +1,17 @@
 package com.reserva.entity;
 
-public class Reserva {
+public class Reserva implements Comparable<Reserva>{
   private String nome;
   private String tipoDeQuarto;
   private int numeroDeDias;
   private double valorDiaria;
-  private static int quantidadeReservas = 0;
 
-  public Reserva(String nome, int numeroDeDias, String tipoDeQuarto) throws Exception {
+  public Reserva(String nome, String tipoDeQuarto, int numeroDeDias ) throws Exception {
     this.nome = validarNome(nome);
-    this.numeroDeDias = validarDias(numeroDeDias);
     this.tipoDeQuarto = validarQuartos(tipoDeQuarto);
+    this.numeroDeDias = validarDias(numeroDeDias);
   }
 
-  //  public Reserva(String nome, String tipoDeQuarto){
-  //      this.nome = nome;
-  //      this.tipoDeQuarto = tipoDeQuarto;
-  //  }
-
-  public int getQuantidadeReservas() {
-    return quantidadeReservas;
-  }
-
-  public static void setQuantidadeReservas(int quantidadeReservas) {
-    Reserva.quantidadeReservas += quantidadeReservas;
-  }
 
   private String validarNome(String nome) throws Exception {
     if (nome.isEmpty()) {
@@ -51,22 +38,29 @@ public class Reserva {
   }
 
   private double calcularValorTotal(int numeroDeDias, String tipoDeQuarto) throws Exception {
-      return switch (tipoDeQuarto) {
-          case "standard" -> this.valorDiaria = numeroDeDias * 110.80;
-          case "luxo" -> this.valorDiaria = numeroDeDias * 290.30;
-          case "presidencial" -> this.valorDiaria = numeroDeDias * 459.99;
-          default -> throw new Exception("Quarto inválido");
-      };
+    return switch (tipoDeQuarto) {
+      case "standard" -> this.valorDiaria = numeroDeDias * 110.80;
+      case "luxo" -> this.valorDiaria = numeroDeDias * 290.30;
+      case "presidencial" -> this.valorDiaria = numeroDeDias * 459.99;
+      default -> throw new Exception("Quarto inválido");
+    };
   }
 
-    public double getValorDiaria() {
-        return valorDiaria;
+  public double getValorDiaria() {
+    return valorDiaria;
+  }
+
+  public void setValorDiaria(int numeroDeDias, String tipoDeQuarto) throws Exception {
+    this.valorDiaria = calcularValorTotal(numeroDeDias, tipoDeQuarto);
+  }
+
+    public String getNome() {
+        return nome;
     }
 
-    public void setValorDiaria(int numeroDeDias, String tipoDeQuarto) throws Exception {
-      this.valorDiaria = calcularValorTotal(numeroDeDias, tipoDeQuarto);
+    public int getNumeroDeDias() {
+        return numeroDeDias;
     }
-
 
     @Override
   public String toString() {
@@ -75,6 +69,12 @@ public class Reserva {
         + "\nQuarto escolhido: "
         + tipoDeQuarto
         + "\nNúmero de dias de estadia: "
-        + numeroDeDias;
+        + numeroDeDias
+            + "\nValor total da diária: " + valorDiaria;
   }
+
+    @Override
+    public int compareTo(Reserva reserva) {
+        return this.numeroDeDias - reserva.getNumeroDeDias();
+    }
 }
