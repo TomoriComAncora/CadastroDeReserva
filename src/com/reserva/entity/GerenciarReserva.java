@@ -15,11 +15,8 @@ public class GerenciarReserva {
     }
   }
 
-  public void listarReservas(Reserva[] reserva) {
-    //        return Arrays.copyOf(reservas, contadorDeReservas);
-    for (int i = 0; i < contadorDeReservas; i++) {
-      System.out.println(reserva[i]);
-    }
+  public Reserva[] listarReservas() {
+    return Arrays.copyOf(reservas, contadorDeReservas);
   }
 
   public Reserva buscarPorNome(String nome) {
@@ -31,19 +28,23 @@ public class GerenciarReserva {
     return null;
   }
 
-  public void ordenarReservasPorDia(){
-      for (int i = 0; i < contadorDeReservas - 1; i++) {
-          for (int j = 0; j < contadorDeReservas - i - 1; j++) {
-              if (reservas[j].compareTo(reservas[j + 1]) > 0) {
-                  Reserva temp = reservas[j];
-                  reservas[j] = reservas[j + 1];
-                  reservas[j + 1] = temp;
-              }
-          }
+  public void ordenarReservasPorDia() {
+    for (int i = 0; i < contadorDeReservas - 1; i++) {
+      for (int j = 0; j < contadorDeReservas - i - 1; j++) {
+        if (reservas[j].compareTo(reservas[j + 1]) > 0) {
+          Reserva temp = reservas[j];
+          reservas[j] = reservas[j + 1];
+          reservas[j + 1] = temp;
+        }
       }
+    }
+    for (int i = 0; i < contadorDeReservas; i++) {
+      System.out.println(reservas[i]);
+      System.out.println("---------------------------");
+    }
   }
 
-    public int getContadorDeReservas() {
-        return reservas.length - contadorDeReservas;
-    }
+  public int getContadorDeReservas() {
+    return reservas.length - contadorDeReservas;
+  }
 }

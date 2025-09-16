@@ -30,7 +30,7 @@ public class InterfaceEscolhas {
     String nome = scanner.nextLine().toLowerCase();
     System.out.println("Quantos dias de estadia: ");
     int numeroDeDias = Integer.parseInt(scanner.nextLine());
-    System.out.println("Qual o tipo do quarto: (\nStandard - 110,80 R$\nLuxo - 290,30 R$\nPresidencial - 459,99 R$");
+    System.out.println("Qual o tipo do quarto: \nStandard - 110,80 R$\nLuxo - 290,30 R$\nPresidencial - 459,99 R$");
     String tipoQuarto = scanner.nextLine().toLowerCase();
 
     Reserva reserva = new Reserva(nome, tipoQuarto, numeroDeDias);
@@ -42,5 +42,6 @@ public class InterfaceEscolhas {
     System.out.println("Digite o nome do titular para buscar");
     return scanner.nextLine().toLowerCase();
   }
+
 
 }
