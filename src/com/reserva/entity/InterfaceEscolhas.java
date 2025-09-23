@@ -8,7 +8,7 @@ public class InterfaceEscolhas {
   public void exibirMenu() {
     System.out.println("=== Bem vindo ao Hotel ===");
     System.out.println(
-        "1 - Nova reserva \n2 - Listar reserva \n3 - Buscar reserva por nome do hóspede \n4 - Ordernar reserva por dias \n5 - Sair\n");
+        "1 - Nova reserva \n2 - Listar reserva \n3 - Buscar reserva por nome do hóspede \n4 - Sair\n");
     System.out.println("================================");
   }
 
@@ -42,6 +42,5 @@ public class InterfaceEscolhas {
     System.out.println("Digite o nome do titular para buscar");
     return scanner.nextLine().toLowerCase();
   }
-
 
 }

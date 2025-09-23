@@ -75,6 +75,10 @@ public class Reserva implements Comparable<Reserva>{
 
     @Override
     public int compareTo(Reserva reserva) {
-        return this.numeroDeDias - reserva.getNumeroDeDias();
+        int compararDias = Integer.compare(this.numeroDeDias, reserva.getNumeroDeDias());
+        if(compararDias == 0){
+            return  this.nome.compareTo(reserva.getNome());
+        }
+        return compararDias;
     }
 }

@@ -2,7 +2,6 @@ import com.reserva.entity.GerenciarReserva;
 import com.reserva.entity.InterfaceEscolhas;
 import com.reserva.entity.Reserva;
 
-import java.util.Scanner;
 
 public class Hotel {
   public static void main(String[] args) throws Exception {
@@ -38,16 +37,11 @@ public class Hotel {
           }
           break;
         case 4:
-          System.out.println("Reservas ordenadas por número de dias");
-          gerenciarReserva.ordenarReservasPorDia();
-          System.out.println("---------------------------");
-          break;
-        case 5:
           System.out.println("Saindo...");
           break;
         default:
           System.out.println("Opção inválida, tente novamente");
       }
-    } while (opcao != 5);
+    } while (opcao != 4);
   }
 }

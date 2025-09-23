@@ -1,50 +1,34 @@
 package com.reserva.entity;
 
-import java.util.Arrays;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class GerenciarReserva {
-  private Reserva[] reservas = new Reserva[10];
-  private int contadorDeReservas = 0;
+    Set<Reserva> reservas = new TreeSet<>();
+  private final int CAPACIDADE_MAX = 10;
 
   public void adicionarReserva(Reserva reserva) {
-    if (contadorDeReservas > 9) {
-      System.out.println("Não há mais vagas a serem reservadas");
-    } else {
-      reservas[contadorDeReservas] = reserva;
-      contadorDeReservas++;
-    }
+      if(reservas.size() < CAPACIDADE_MAX){
+          reservas.add(reserva);
+      }else {
+          System.out.println("Não há mais vagas a serem reservadas");
+      }
   }
 
-  public Reserva[] listarReservas() {
-    return Arrays.copyOf(reservas, contadorDeReservas);
+  public Set<Reserva> listarReservas() {
+    return new TreeSet<>(this.reservas);
   }
 
   public Reserva buscarPorNome(String nome) {
-    for (int i = 0; i < contadorDeReservas; i++) {
-      if (reservas[i].getNome().equalsIgnoreCase(nome)) {
-        return (reservas[i]);
-      }
+    for(Reserva reserva : this.reservas){
+        if (reserva.getNome().equalsIgnoreCase(nome)){
+            return reserva;
+        }
     }
     return null;
   }
 
-  public void ordenarReservasPorDia() {
-    for (int i = 0; i < contadorDeReservas - 1; i++) {
-      for (int j = 0; j < contadorDeReservas - i - 1; j++) {
-        if (reservas[j].compareTo(reservas[j + 1]) > 0) {
-          Reserva temp = reservas[j];
-          reservas[j] = reservas[j + 1];
-          reservas[j + 1] = temp;
-        }
-      }
-    }
-    for (int i = 0; i < contadorDeReservas; i++) {
-      System.out.println(reservas[i]);
-      System.out.println("---------------------------");
-    }
-  }
-
   public int getContadorDeReservas() {
-    return reservas.length - contadorDeReservas;
+    return CAPACIDADE_MAX - reservas.size();
   }
 }
